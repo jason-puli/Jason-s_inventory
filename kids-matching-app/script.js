@@ -64,17 +64,17 @@ const closeBtn = document.querySelector('.close');
 const languageSelect = document.getElementById('language-select');
 const audioToggle = document.getElementById('audio-toggle');
 const difficultySelect = document.getElementById('difficulty-select');
-const logsContainer = document.getElementById('logs-container');
+// const logsContainer = document.getElementById('logs-container');
 const startPrompt = document.getElementById('start-prompt');
 
 // Initialize app
 function init() {
     loadSettings();
     loadHighScores();
-    loadLogs();
+    // loadLogs();
     setupEventListeners();
     updateUI();
-    logEvent('app_started', 'App initialized');
+    // logEvent('app_started', 'App initialized');
 }
 
 // Event listeners
@@ -417,3 +417,4 @@ function shuffleArray(array) {
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', init);
+

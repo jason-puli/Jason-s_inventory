@@ -401,7 +401,7 @@ function logEvent(eventType, details) {
     });
     // Keep only last 4 logs
     if (localLogs.length > 4) {
-        localLogs = localLogs.slice(-100);
+        localLogs = localLogs.slice(-4);
     }
     saveLogs();
 }
@@ -417,6 +417,7 @@ function shuffleArray(array) {
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', init);
+
 
 
 

@@ -1,0 +1,425 @@
+/* Kids Matching App Styles */
+
+:root {
+    --primary-color: #FF8C42;
+    --secondary-color: #FFE4B5;
+    --accent-color: #FF6B35;
+    --success-color: #4CAF50;
+    --error-color: #F44336;
+    --background-color: #FFF8DC;
+    --text-color: #333;
+    --border-radius: 12px;
+    --font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#settings-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+}
+
+#settings-btn:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+#high-score {
+    font-weight: bold;
+}
+
+aside {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    min-width: 200px;
+}
+
+.category-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-pill {
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.75rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.category-pill.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.category-pill:hover {
+    transform: scale(1.05);
+}
+
+main {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#match-board {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+#images-container, #names-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    flex: 1;
+}
+
+.image-card, .name-tile {
+    background-color: white;
+    border: 3px solid #ddd;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.image-card:hover, .name-tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.image-card.selected, .name-tile.selected {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    animation: pulse 1s infinite;
+}
+
+.image-card.matched.correct, .name-tile.matched.correct {
+    background-color: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+}
+
+.image-card.incorrect, .name-tile.incorrect {
+    animation: shake 0.5s;
+}
+
+#start-prompt {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 2rem;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid white;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: inherit;
+    transition: all 0.3s;
+    min-width: 120px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    max-width: 300px;
+}
+
+#score {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#progress-bar {
+    flex: 1;
+    height: 20px;
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.close {
+    align-self: flex-end;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal-content label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.modal-content select, .modal-content input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+#logs-container {
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    aside {
+        min-width: auto;
+        padding: 0.5rem;
+    }
+
+    .category-selector {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .category-pill {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    #match-board {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #images-container, #names-container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+    .image-card, .name-tile {
+        min-height: 100px;
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    button {
+        min-width: 100px;
+        padding: 0.5rem 1rem;
+    }
+
+    .progress {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .category-pill {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    #images-container, #names-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .image-card, .name-tile {
+        min-height: 80px;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    button {
+        min-width: 80px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #000;
+        --background-color: #fff;
+        --text-color: #000;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus, .category-pill:focus, .image-card:focus, .name-tile:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}

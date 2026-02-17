@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Matching App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Kids Matching App</h1>
+        <div class="header-controls">
+            <button id="settings-btn" aria-label="Settings">⚙️</button>
+            <div id="high-score">High Score: --</div>
+        </div>
+    </header>
+
+    <aside id="sidebar">
+        <div class="category-selector">
+            <button class="category-pill active" data-category="animals">Animals</button>
+            <button class="category-pill" data-category="fruits">Fruits</button>
+            <button class="category-pill" data-category="vegetables">Vegetables</button>
+            <button class="category-pill" data-category="mixed">Mixed</button>
+        </div>
+    </aside>
+
+    <main>
+        <div id="match-board">
+            <div id="names-container">
+                <!-- Name tiles will be populated here -->
+            </div>
+            <div id="images-container">
+                <!-- Image cards will be populated here -->
+            </div>
+        </div>
+        <div id="start-prompt">
+            <p>Select a category and tap "New Round" to start!</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="controls">
+            <button id="new-round-btn">New Round</button>
+            <button id="hint-btn">Hint</button>
+            <button id="replay-btn">Replay</button>
+        </div>
+        <div class="progress">
+            <div id="score">Score: 0/0</div>
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Settings</h2>
+            <label for="language-select">Language:</label>
+            <select id="language-select">
+                <option value="en-US">English</option>
+                <!-- Add more languages if needed -->
+            </select>
+            <label for="audio-toggle">Audio On:</label>
+            <input type="checkbox" id="audio-toggle" checked>
+            <label for="difficulty-select">Difficulty:</label>
+            <select id="difficulty-select">
+                <option value="easy">Easy (3 pairs)</option>
+                <option value="medium" selected>Medium (6 pairs)</option>
+                <option value="hard">Hard (9 pairs)</option>
+            </select>
+            <h3>Logs</h3>
+            <div id="logs-container">
+                <!-- Logs will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
